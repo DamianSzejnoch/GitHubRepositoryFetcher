@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="77" id="KGk-i7-Jjw" customClass="RepositoryCellTableViewCell" customModule="GitHubSearch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="340" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPp-DQ-BwK">
+                        <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSN-Jf-Gbp">
+                                <rect key="frame" x="20" y="10" width="300" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6H-hy-sqC">
+                                <rect key="frame" x="20" y="37" width="300" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PSN-Jf-Gbp" firstAttribute="top" secondItem="FPp-DQ-BwK" secondAttribute="top" constant="10" id="0DK-mZ-thj"/>
+                            <constraint firstItem="O6H-hy-sqC" firstAttribute="top" secondItem="PSN-Jf-Gbp" secondAttribute="bottom" constant="10" id="1kM-QN-CRR"/>
+                            <constraint firstItem="PSN-Jf-Gbp" firstAttribute="leading" secondItem="FPp-DQ-BwK" secondAttribute="leading" constant="20" id="559-89-Rqg"/>
+                            <constraint firstAttribute="trailing" secondItem="O6H-hy-sqC" secondAttribute="trailing" constant="20" id="Ok7-QX-upk"/>
+                            <constraint firstAttribute="trailing" secondItem="PSN-Jf-Gbp" secondAttribute="trailing" constant="20" id="TtI-9t-5yO"/>
+                            <constraint firstItem="O6H-hy-sqC" firstAttribute="leading" secondItem="FPp-DQ-BwK" secondAttribute="leading" constant="20" id="aPK-E8-gRF"/>
+                            <constraint firstAttribute="height" constant="70" id="ypi-CD-hHq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="FPp-DQ-BwK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EC3-AQ-xgn"/>
+                    <constraint firstItem="FPp-DQ-BwK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="IBi-tq-4jH"/>
+                    <constraint firstAttribute="trailing" secondItem="FPp-DQ-BwK" secondAttribute="trailing" id="Ywt-Tf-BJ3"/>
+                    <constraint firstAttribute="bottom" secondItem="FPp-DQ-BwK" secondAttribute="bottom" constant="10" id="t2f-Dt-nY0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="repositoryLanguage" destination="O6H-hy-sqC" id="8C4-zT-0sn"/>
+                <outlet property="repositoryName" destination="PSN-Jf-Gbp" id="MGP-1L-KWf"/>
+            </connections>
+            <point key="canvasLocation" x="100.72463768115942" y="164.73214285714286"/>
+        </tableViewCell>
+    </objects>
+</document>
