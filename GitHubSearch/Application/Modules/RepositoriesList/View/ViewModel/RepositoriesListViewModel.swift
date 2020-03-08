@@ -23,16 +23,17 @@ protocol RepositoriesListViewModeInput {
 protocol RepositoriesListViewModelOutput {
     var items: BehaviorRelay<[RepositoryModel]> { get set }
     var loadingType: BehaviorRelay<RepositoriesListLoadingType> { get set }
+    var error: BehaviorRelay<Error?> { get set }
 }
 
 protocol RepositoriesViewModelType:  RepositoriesListViewModelOutput, RepositoriesListViewModeInput {}
 
 class RepositoriesViewModel: RepositoriesViewModelType {
     
-    
     // MARK: - Data
     var items = BehaviorRelay<[RepositoryModel]>(value: [])
     var loadingType = BehaviorRelay<RepositoriesListLoadingType>(value: .none)
+    var error = BehaviorRelay<Error?>(value: nil)
     
     // MARK: - Private
     private let disposeBag = DisposeBag()
@@ -45,21 +46,11 @@ class RepositoriesViewModel: RepositoriesViewModelType {
     // MARK: - Input
     func search(query: String) {
         let query = RepositoryQuery(searchValue: query)
-        searchRepositoriesUseCase.searchGitHubRepositories(request: query) { (data, error) in
-            if error != nil  {
-                print(error)
-            } else {
-                var repositories = [RepositoryModel]()
-                guard let decoded = JsonResponseDecoder.decodeJSON(type: Repository.self, from: data) else { return }
-                decoded.items?.forEach({ (item) in
-                    let repository = RepositoryModel(name: item.name ?? "",
-                                                     language: item.language ?? "",
-                                                     url: item.htmlUrl ?? "",
-                                                     stars: String(item.stars ?? 0),
-                                                     imageURL: item.owner?.avatarURL ?? "")
-                    repositories.append(repository)
-                })
-                self.items.accept(self.items.value + repositories)
+        searchRepositoriesUseCase.searchGitHubRepositories(request: query) { [weak self ] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let model): self.items.accept(self.items.value + model)
+            case .failure(let error): self.error.accept(error)
             }
         }
     }

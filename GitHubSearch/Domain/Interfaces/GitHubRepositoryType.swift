@@ -10,5 +10,6 @@ import RxSwift
 import RxCocoa
 
 protocol GitHubRepositoryType {
-    func fetchRepos(query: RepositoryQuery, completion: @escaping CompletionHandler)
+    typealias Completion = (Result<[RepositoryModel], Error>) -> Void
+    func fetchRepos(query: RepositoryQuery, completion: @escaping Completion)
 }

@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 
 protocol SearchRepositoriesUseCaseType {
-    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping CompletionHandler)
+    typealias Completion = (Result<[RepositoryModel], Error>) -> Void
+    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping Completion)
 }
 
 class SearchRepositoryUseCase: SearchRepositoriesUseCaseType {
@@ -25,7 +26,7 @@ class SearchRepositoryUseCase: SearchRepositoriesUseCaseType {
     }
     
     // MARK: - Methods
-    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping CompletionHandler) {
+    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping Completion) {
         gitHubRepository.fetchRepos(query: request, completion: completion)
     }
 }

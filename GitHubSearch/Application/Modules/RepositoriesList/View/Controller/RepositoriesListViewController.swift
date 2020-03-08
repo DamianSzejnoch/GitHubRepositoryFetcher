@@ -64,6 +64,10 @@ class RepositoriesListViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
+        viewModel.error.asObservable().skip(1).subscribe(onNext: { [weak self] error in
+            guard let self = self else { return }
+            self.showAnAlert(alert: "", message: error?.localizedDescription ?? "", actionTitle: "OK", actionStyle: .default, controller: self)
+            }).disposed(by: disposeBag)
     }
     
     // MARK: - Lifecycle
