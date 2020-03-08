@@ -11,10 +11,10 @@ import UIKit
 class RepositoryCellTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-    @IBOutlet weak var repositoryName: UILabel!
-    @IBOutlet weak var repositoryLanguage: UILabel!
-    @IBOutlet weak var score: UILabel!
-    @IBOutlet weak var repositoryImage: UIImageView!
+    @IBOutlet private weak var repositoryName: UILabel!
+    @IBOutlet private weak var repositoryLanguage: UILabel!
+    @IBOutlet private weak var score: UILabel!
+    @IBOutlet private weak var repositoryImage: UIImageView!
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -23,7 +23,7 @@ class RepositoryCellTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        repositoryImage.image = UIImage()
+        repositoryImage.image = nil
         repositoryName.text = ""
         repositoryLanguage.text = ""
         score.text = ""

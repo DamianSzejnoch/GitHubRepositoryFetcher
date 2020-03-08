@@ -23,7 +23,7 @@ protocol RepositoriesListViewModeInput {
 protocol RepositoriesListViewModelOutput {
     var items: BehaviorRelay<[RepositoryModel]> { get set }
     var loadingType: BehaviorRelay<RepositoriesListLoadingType> { get set }
-    var error: BehaviorRelay<Error?> { get set }
+    var error: PublishRelay<Error?> { get set }
 }
 
 protocol RepositoriesViewModelType:  RepositoriesListViewModelOutput, RepositoriesListViewModeInput {}
@@ -33,7 +33,7 @@ class RepositoriesViewModel: RepositoriesViewModelType {
     // MARK: - Data
     var items = BehaviorRelay<[RepositoryModel]>(value: [])
     var loadingType = BehaviorRelay<RepositoriesListLoadingType>(value: .none)
-    var error = BehaviorRelay<Error?>(value: nil)
+    var error = PublishRelay<Error?>()
     
     // MARK: - Private
     private let disposeBag = DisposeBag()

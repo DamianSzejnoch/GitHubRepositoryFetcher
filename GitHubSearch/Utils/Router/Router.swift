@@ -12,7 +12,6 @@ import UIKit
 final class Router: NSObject, RouterType {
     
     // MARK: - Vars & Lets
-    
     private weak var rootController: CoordinatorNavigationController?
     private var completions: [UIViewController : () -> Void]
     
@@ -147,6 +146,4 @@ final class Router: NSObject, RouterType {
         self.completions = [:]
         super.init()
     }
-    
-    
 }

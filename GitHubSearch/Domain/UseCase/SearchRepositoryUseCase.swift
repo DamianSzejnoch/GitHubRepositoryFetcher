@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import RxCocoa
-import RxSwift
 
 protocol SearchRepositoriesUseCaseType {
     typealias Completion = (Result<[RepositoryModel], Error>) -> Void
@@ -18,7 +16,6 @@ protocol SearchRepositoriesUseCaseType {
 class SearchRepositoryUseCase: SearchRepositoriesUseCaseType {
     
     // MARK: - Private
-    private let disposeBag = DisposeBag()
     private let gitHubRepository: GitHubRepositoryType
     
     init(gitHubRepository: GitHubRepositoryType) {

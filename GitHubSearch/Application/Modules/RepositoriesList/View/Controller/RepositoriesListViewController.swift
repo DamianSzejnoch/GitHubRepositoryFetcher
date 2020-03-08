@@ -13,10 +13,13 @@ import RxSwift
 class RepositoriesListViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyListMessage: UILabel!
+    @IBOutlet private weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyListMessage: UILabel!
+    
+    //MARK: - Public
+    var actions: RepositoriesListCoordinatorActions?
     
     // MARK: - Private
     private let disposeBag = DisposeBag()
@@ -41,33 +44,34 @@ class RepositoriesListViewController: UIViewController {
     }
     
     private func viewModelBindings() {
-        viewModel.items.asObservable().subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            if !self.viewModel.items.value.isEmpty { self.viewModel.loadingType.accept(.loaded)}
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
+        viewModel.items.asObservable()
+            .filter { !$0.isEmpty }
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.loadingType.accept(.loaded)
+                self?.tableView.reloadData()
+            }).disposed(by: disposeBag)
+        viewModel.loadingType.asObservable()
+            .subscribe(onNext: { [weak self] type in
+                guard let self = self else { return }
+                switch type {
+                case .none:
+                    self.loadingView.isHidden = true
+                    self.emptyListMessage.isHidden = false
+                    self.searchBar.showsCancelButton = false
+                case .loading:
+                    self.loadingView.isHidden = false
+                    self.emptyListMessage.isHidden = true
+                case .loaded:
+                    self.loadingView.isHidden = true
+                    self.searchBar.showsCancelButton = true
+                    self.emptyListMessage.isHidden = true
+                }
+            }).disposed(by: disposeBag)
         
-        viewModel.loadingType.asObservable().subscribe(onNext: { [weak self] type in
-            guard let self = self else { return }
-            switch type {
-            case .none:
-                self.loadingView.isHidden = true
-                self.emptyListMessage.isHidden = false
-                self.searchBar.showsCancelButton = false
-            case .loading:
-                self.loadingView.isHidden = false
-                self.emptyListMessage.isHidden = true
-            case .loaded:
-                self.loadingView.isHidden = true
-                self.searchBar.showsCancelButton = true
-                self.emptyListMessage.isHidden = true
-            }
-        }).disposed(by: disposeBag)
-        
-        viewModel.error.asObservable().skip(1).subscribe(onNext: { [weak self] error in
+        viewModel.error.asObservable().subscribe(onNext: { [weak self] error in
             guard let self = self else { return }
             self.showAnAlert(alert: "", message: error?.localizedDescription ?? "", actionTitle: "OK", actionStyle: .default, controller: self)
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     // MARK: - Lifecycle

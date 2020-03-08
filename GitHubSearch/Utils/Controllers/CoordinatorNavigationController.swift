@@ -18,7 +18,7 @@ class CoordinatorNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBarAppeatance()
+        setupNavigationBarAppearance()
         setNavigationBarHidden(false, animated: false)
     }
 
@@ -26,7 +26,7 @@ class CoordinatorNavigationController: UINavigationController {
         self.transition = transition
     }
     
-    private func setupNavigationBarAppeatance() {
+    private func setupNavigationBarAppearance() {
         UINavigationBar.appearance().barTintColor = .black
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

@@ -29,13 +29,19 @@ class RepositoriesListCoordinator: Coordinator {
     }
     
     func start() {
-        
+        showRepositoriesList()
     }
 }
 
 extension RepositoriesListCoordinator {
     private func showRepositoriesList() {
-        
+        repositoriesListViewController.actions = RepositoriesListCoordinatorActions(
+            dismissViewController: { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.removeDependency.onNext(())
+                strongSelf.router.dismissModule()
+        })
     }
 }
+
 

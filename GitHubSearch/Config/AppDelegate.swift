@@ -11,8 +11,7 @@ import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
     private let window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
     private var diContainer = DIContainer.shared
     var appCoordinator: AppCoordinator?

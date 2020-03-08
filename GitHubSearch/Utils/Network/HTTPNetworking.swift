@@ -18,8 +18,7 @@ protocol Networking {
 
 class HTTPNetworking: Networking {
     func request(query: Query, completion: @escaping Completion) {
-        AF.request(query.endPoint.path, parameters: query.queryParameters).response { [weak self] response in
-            guard let self = self else { return }
+        AF.request(query.endPoint.path, parameters: query.queryParameters).response { response in
             completion(response.data, response.error)
         }
     }

@@ -10,8 +10,8 @@ import Swinject
 
 class GitHubRepositoryAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(GitHubRepositoryType.self) { (resolver: Resolver) in
-            guard let networking = resolver.resolve(HTTPNetworking.self) else { fatalError() }
+        container.register(GitHubRepositoryType.self) { r in
+            guard let networking = r.resolve(HTTPNetworking.self) else { fatalError() }
             return GitHubRepository(networking: networking)
         }
     }

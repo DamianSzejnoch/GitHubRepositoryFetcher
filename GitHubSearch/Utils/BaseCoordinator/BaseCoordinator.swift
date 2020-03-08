@@ -19,11 +19,9 @@ protocol Coordinator: class {
 }
 
 class BaseCoordinator: Coordinator {
-
-func start() {
     
-}
-        
+    func start() {}
+    
     var childCoordinators = [Coordinator]()
     
     func addDependency(_ coordinator: Coordinator) {
@@ -32,10 +30,10 @@ func start() {
         }
         childCoordinators.append(coordinator)
     }
-
+    
     func removeDependency(_ coordinator: Coordinator?) {
         guard childCoordinators.isEmpty == false, let coordinator = coordinator else { return }
-
+        
         for (index, element) in childCoordinators.enumerated() {
             if element === coordinator {
                 childCoordinators.remove(at: index)

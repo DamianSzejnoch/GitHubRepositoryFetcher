@@ -13,8 +13,8 @@ class ViewControllerAssembly: Assembly {
         container.register(AppRootViewController.self) { _ in
                    return AppRootViewController()
                }
-        container.register(RepositoriesListViewController.self) { (resolver: Resolver) in
-            guard let viewModel = resolver.resolve(RepositoriesViewModelType.self) else { fatalError() }
+        container.register(RepositoriesListViewController.self) { r in
+            guard let viewModel = r.resolve(RepositoriesViewModelType.self) else { fatalError() }
             return RepositoriesListViewController(viewModel: viewModel)
         }
         

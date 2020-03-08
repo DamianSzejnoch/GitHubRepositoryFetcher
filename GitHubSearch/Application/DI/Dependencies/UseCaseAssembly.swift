@@ -10,8 +10,8 @@ import Swinject
 
 class UseCaseAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(SearchRepositoriesUseCaseType.self) { (resolver: Resolver) in
-            guard let gitHubRepository = resolver.resolve(GitHubRepositoryType.self) else { fatalError() }
+        container.register(SearchRepositoriesUseCaseType.self) { r in
+            guard let gitHubRepository = r.resolve(GitHubRepositoryType.self) else { fatalError() }
             return SearchRepositoryUseCase(gitHubRepository: gitHubRepository)
         }
     }

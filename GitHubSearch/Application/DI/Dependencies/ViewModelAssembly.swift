@@ -11,8 +11,8 @@ import Swinject
 class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
         
-        container.register(RepositoriesViewModelType.self) { (resolver: Resolver) in
-             guard let searchRepositoriesUseCase = resolver.resolve(SearchRepositoriesUseCaseType.self) else { fatalError() }
+        container.register(RepositoriesViewModelType.self) { r in
+             guard let searchRepositoriesUseCase = r.resolve(SearchRepositoriesUseCaseType.self) else { fatalError() }
             return RepositoriesViewModel(searchRepositoriesUseCase: searchRepositoriesUseCase)
         }
     }
