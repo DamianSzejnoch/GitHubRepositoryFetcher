@@ -7,16 +7,11 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
 import Alamofire
 
 class GitHubRepository: GitHubRepositoryType {
     
-    var responseCallBack = BehaviorRelay<Repository?>(value: nil)
-    
     //MARK: Private
-    private let disposeBag = DisposeBag()
     private let networking: HTTPNetworking
     
     init(networking: HTTPNetworking) {
@@ -24,15 +19,8 @@ class GitHubRepository: GitHubRepositoryType {
     }
     
     // Methods
-    func fetchRepos(query: RepositoryQuery) {
+    func fetchRepos(query: RepositoryQuery, completion: @escaping CompletionHandler) {
         let query = Query(endPoint: GitHubRepositoryAPI.repos, queryParameters: ["q": query.searchValue])
-        
-        networking.request(query: query)
-        networking.response.asObservable().subscribe(onNext: { [weak self] repository in
-            guard let self = self else { return }
-            guard let data = repository as? Data else { return }
-            let decodedRepository = JsonResponseDecoder.decodeJSON(type: Repository.self, from: data)
-            self.responseCallBack.accept(decodedRepository)
-            }).disposed(by: disposeBag)
+        networking.request(query: query, completion: completion)
     }
 }

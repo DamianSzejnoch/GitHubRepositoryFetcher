@@ -44,6 +44,7 @@
 		59A5584C24116B6B00B7F297 /* RepositoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A5584B24116B6B00B7F297 /* RepositoriesListViewModel.swift */; };
 		59A5585624116D7A00B7F297 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A5585524116D7A00B7F297 /* Repository.swift */; };
 		59A5585824116DC500B7F297 /* SearchRepositoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A5585724116DC500B7F297 /* SearchRepositoryUseCase.swift */; };
+		59B9B9732413F55E0058CBD7 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B9B9722413F55E0058CBD7 /* UIImageView + Extension.swift */; };
 		720AF7498E59D69AFA6FBB99 /* Pods_GitHubSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC86F235A6880C71FE908A8C /* Pods_GitHubSearchTests.framework */; };
 		995FF6A23316CA1332C6892A /* Pods_GitHubSearch_GitHubSearchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761944D7184E1772551A6B48 /* Pods_GitHubSearch_GitHubSearchUITests.framework */; };
 		CBD4853A26653EB54DFFF04E /* Pods_GitHubSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6089A1276A6D1B42D330381E /* Pods_GitHubSearch.framework */; };
@@ -113,6 +114,7 @@
 		59A5584B24116B6B00B7F297 /* RepositoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewModel.swift; sourceTree = "<group>"; };
 		59A5585524116D7A00B7F297 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		59A5585724116DC500B7F297 /* SearchRepositoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryUseCase.swift; sourceTree = "<group>"; };
+		59B9B9722413F55E0058CBD7 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		6089A1276A6D1B42D330381E /* Pods_GitHubSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7505243F19D4498AF38FE400 /* Pods-GitHubSearch-GitHubSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearch-GitHubSearchUITests.debug.xcconfig"; path = "Target Support Files/Pods-GitHubSearch-GitHubSearchUITests/Pods-GitHubSearch-GitHubSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		761944D7184E1772551A6B48 /* Pods_GitHubSearch_GitHubSearchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearch_GitHubSearchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,9 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				594B6DFB24125C4200C8501E /* Config */,
-				59A5584F24116CC300B7F297 /* Application */,
 				59A5585024116CC800B7F297 /* Data */,
 				59A5585124116CCC00B7F297 /* Domain */,
+				59A5584F24116CC300B7F297 /* Application */,
 				59A558322411697B00B7F297 /* Utils */,
 			);
 			path = GitHubSearch;
@@ -379,6 +381,7 @@
 			children = (
 				59A5584224116ABB00B7F297 /* UIView + Extension.swift */,
 				5901E4F624129F5000CDCDCD /* UITableViewCell + Extension.swift */,
+				59B9B9722413F55E0058CBD7 /* UIImageView + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -755,6 +758,7 @@
 				59A5582A241166EF00B7F297 /* RepositoriesListViewController.swift in Sources */,
 				59A5584024116A3600B7F297 /* CoordinatorNavigationController.swift in Sources */,
 				594B6DF824119A3800C8501E /* GitHubRepositoryAssembly.swift in Sources */,
+				59B9B9732413F55E0058CBD7 /* UIImageView + Extension.swift in Sources */,
 				594B6DED2411897700C8501E /* HTTPNetworking.swift in Sources */,
 				594B6DE72411765900C8501E /* UseCaseAssembly.swift in Sources */,
 				594B6DE3241175F200C8501E /* ViewControllerAssembly.swift in Sources */,

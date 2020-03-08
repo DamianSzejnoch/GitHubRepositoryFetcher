@@ -11,25 +11,20 @@ import RxSwift
 import RxCocoa
 import Alamofire
 
+typealias CompletionHandler = (Data?, Swift.Error?) -> Void
+
 protocol Networking {
-    var response: BehaviorRelay<Any?> { get set }
-    func request(query: Query)
+    func request(query: Query, completion: @escaping CompletionHandler)
 }
 
 class HTTPNetworking: Networking {
-    var response = BehaviorRelay<Any?>(value: nil)
-    
-    func request(query: Query) {
+    func request(query: Query, completion: @escaping CompletionHandler) {
         AF.request(query.endPoint.path, parameters: query.queryParameters).response { [weak self] response in
           guard let self = self else { return }
-            switch response.result {
-            case .success:
-                self.response.accept(response.data)
-            case .failure:
-                self.response.accept(response.error)
-            }
+            completion(response.data, response.error)
         }
     }
+    
 }
 
 struct Query {

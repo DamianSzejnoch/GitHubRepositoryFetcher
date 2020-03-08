@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepositoriesListViewController" customModule="GitHubSearch" customModuleProvider="target">
             <connections>
+                <outlet property="emptyListMessage" destination="ND3-gE-MSU" id="yP9-f3-NR6"/>
+                <outlet property="loadingView" destination="V04-TF-T27" id="hcs-GO-jq4"/>
                 <outlet property="searchBar" destination="AYY-03-6Ei" id="P3J-ZO-1JA"/>
                 <outlet property="tableView" destination="HwS-CV-9Gl" id="atS-qk-zSB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,23 +21,45 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwS-CV-9Gl">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwS-CV-9Gl">
                     <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                 </tableView>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AYY-03-6Ei">
                     <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type to search repositories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND3-gE-MSU">
+                    <rect key="frame" x="10" y="398" width="394" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="4yj-bg-iqg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="V04-TF-T27">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="ND3-gE-MSU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="3M5-Y4-CMH"/>
                 <constraint firstItem="AYY-03-6Ei" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4r6-bM-gla"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HwS-CV-9Gl" secondAttribute="trailing" id="57C-wW-m0Y"/>
                 <constraint firstItem="HwS-CV-9Gl" firstAttribute="top" secondItem="AYY-03-6Ei" secondAttribute="bottom" id="A5P-dp-ymc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HwS-CV-9Gl" secondAttribute="bottom" id="RlY-MN-f4B"/>
+                <constraint firstItem="ND3-gE-MSU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="S39-x9-kfW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AYY-03-6Ei" secondAttribute="trailing" id="ScP-Vg-H9A"/>
                 <constraint firstItem="AYY-03-6Ei" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bia-iV-DEm"/>
                 <constraint firstItem="HwS-CV-9Gl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="f9g-A4-fgy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ND3-gE-MSU" secondAttribute="trailing" constant="10" id="fZm-Jk-mFB"/>
+                <constraint firstItem="V04-TF-T27" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hLR-fq-AQ2"/>
+                <constraint firstItem="ND3-gE-MSU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pw0-LX-r6b"/>
+                <constraint firstItem="V04-TF-T27" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xmR-NA-CsH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="154"/>

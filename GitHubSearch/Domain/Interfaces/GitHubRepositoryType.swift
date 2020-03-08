@@ -10,6 +10,5 @@ import RxSwift
 import RxCocoa
 
 protocol GitHubRepositoryType {
-    var responseCallBack: BehaviorRelay<Repository?> { get }
-    func fetchRepos(query: RepositoryQuery)
+    func fetchRepos(query: RepositoryQuery, completion: @escaping CompletionHandler)
 }

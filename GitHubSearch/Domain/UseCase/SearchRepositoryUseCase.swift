@@ -11,14 +11,10 @@ import RxCocoa
 import RxSwift
 
 protocol SearchRepositoriesUseCaseType {
-    var response: BehaviorRelay<[RepositoryModel]> { get }
-    func searchGitHubRepositories(request: RepositoryQuery)
+    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping CompletionHandler)
 }
 
 class SearchRepositoryUseCase: SearchRepositoriesUseCaseType {
-    
-    // MARK: - Public
-    var response = BehaviorRelay<[RepositoryModel]>(value: [])
     
     // MARK: - Private
     private let disposeBag = DisposeBag()
@@ -29,19 +25,7 @@ class SearchRepositoryUseCase: SearchRepositoriesUseCaseType {
     }
     
     // MARK: - Methods
-    func searchGitHubRepositories(request: RepositoryQuery) {
-        var items = [RepositoryModel]()
-        gitHubRepository.fetchRepos(query: request)
-        gitHubRepository.responseCallBack.asObservable()
-            .skip(1)
-            .subscribe(onNext: { [weak self] repository in
-            
-                guard let self = self else { return }
-                repository?.items?.forEach({ (item) in
-                    let repository = RepositoryModel(name: item.name ?? "", language: item.language ?? "")
-                    items.append(repository)
-                })
-            self.response.accept(items)
-            }).disposed(by: disposeBag)
+    func searchGitHubRepositories(request: RepositoryQuery,completion: @escaping CompletionHandler) {
+        gitHubRepository.fetchRepos(query: request, completion: completion)
     }
 }

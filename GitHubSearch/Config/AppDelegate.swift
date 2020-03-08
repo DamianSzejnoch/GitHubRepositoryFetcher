@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var diContainer = DIContainer.shared
     var appCoordinator: AppCoordinator?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if #available(iOS 13.0, *) {
+            window.overrideUserInterfaceStyle = .light
+        }
         appCoordinator = AppCoordinator(window: window, factory: diContainer)
         IQKeyboardManager.shared.enable = true
         appCoordinator?.start()

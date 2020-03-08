@@ -11,4 +11,7 @@ import Foundation
 struct RepositoryModel {
     let name: String
     let language: String
+    let url: String
+    let stars: String
+    let imageURL: String
 }

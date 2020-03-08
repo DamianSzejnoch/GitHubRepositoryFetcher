@@ -10,27 +10,33 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum RepositoriesListLoadingType {
+    case none
+    case loading
+    case loaded
+}
+
 protocol RepositoriesListViewModeInput {
     func search(query: String)
     func cancelSearch()
 }
 protocol RepositoriesListViewModelOutput {
-    func onViewDidLoad()
-    var items: BehaviorRelay<[RepositoryModel]> { get }
+    var items: BehaviorRelay<[RepositoryModel]> { get set }
+    var loadingType: BehaviorRelay<RepositoriesListLoadingType> { get set }
 }
 
 protocol RepositoriesViewModelType:  RepositoriesListViewModelOutput, RepositoriesListViewModeInput {}
 
 class RepositoriesViewModel: RepositoriesViewModelType {
     
+    
     // MARK: - Data
     var items = BehaviorRelay<[RepositoryModel]>(value: [])
+    var loadingType = BehaviorRelay<RepositoriesListLoadingType>(value: .none)
     
     // MARK: - Private
     private let disposeBag = DisposeBag()
     private let searchRepositoriesUseCase: SearchRepositoriesUseCaseType
-    
-    
     
     init(searchRepositoriesUseCase: SearchRepositoriesUseCaseType) {
         self.searchRepositoriesUseCase = searchRepositoriesUseCase
@@ -39,15 +45,23 @@ class RepositoriesViewModel: RepositoriesViewModelType {
     // MARK: - Input
     func search(query: String) {
         let query = RepositoryQuery(searchValue: query)
-        searchRepositoriesUseCase.searchGitHubRepositories(request: query)
-        
-    }
-    // MARK: - Output
-    func onViewDidLoad() {
-        searchRepositoriesUseCase.response.asObservable().subscribe(onNext: { [weak self] repositories in
-            guard let self = self else { return }
-            self.items.accept(repositories)
-        }).disposed(by: disposeBag)
+        searchRepositoriesUseCase.searchGitHubRepositories(request: query) { (data, error) in
+            if error != nil  {
+                print(error)
+            } else {
+                var repositories = [RepositoryModel]()
+                guard let decoded = JsonResponseDecoder.decodeJSON(type: Repository.self, from: data) else { return }
+                decoded.items?.forEach({ (item) in
+                    let repository = RepositoryModel(name: item.name ?? "",
+                                                     language: item.language ?? "",
+                                                     url: item.htmlUrl ?? "",
+                                                     stars: String(item.stars ?? 0),
+                                                     imageURL: item.owner?.avatarURL ?? "")
+                    repositories.append(repository)
+                })
+                self.items.accept(self.items.value + repositories)
+            }
+        }
     }
     
     func cancelSearch() {

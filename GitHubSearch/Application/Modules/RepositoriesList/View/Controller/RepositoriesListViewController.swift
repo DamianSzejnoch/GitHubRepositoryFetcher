@@ -13,11 +13,13 @@ import RxSwift
 class RepositoriesListViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyListMessage: UILabel!
     
     // MARK: - Private
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let viewModel: RepositoriesViewModelType
     
     // MARK: - Inits
@@ -30,6 +32,8 @@ class RepositoriesListViewController: UIViewController {
     private func setupView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.keyboardDismissMode = .onDrag
+        self.loadingView.isHidden = true
         tableView.register(RepositoryCellTableViewCell.nib, forCellReuseIdentifier: RepositoryCellTableViewCell.key)
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search Repositories", comment: "")
@@ -37,12 +41,31 @@ class RepositoriesListViewController: UIViewController {
     }
     
     private func viewModelBindings() {
-        viewModel.items.asObservable().bind { [weak self] _ in
+        viewModel.items.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
+            if !self.viewModel.items.value.isEmpty { self.viewModel.loadingType.accept(.loaded)}
             self.tableView.reloadData()
-            }.disposed(by: disposeBag)
-        viewModel.onViewDidLoad()
+        }).disposed(by: disposeBag)
+        
+        viewModel.loadingType.asObservable().subscribe(onNext: { [weak self] type in
+            guard let self = self else { return }
+            switch type {
+            case .none:
+                self.loadingView.isHidden = true
+                self.emptyListMessage.isHidden = false
+                self.searchBar.showsCancelButton = false
+            case .loading:
+                self.loadingView.isHidden = false
+                self.emptyListMessage.isHidden = true
+            case .loaded:
+                self.loadingView.isHidden = true
+                self.searchBar.showsCancelButton = true
+                self.emptyListMessage.isHidden = true
+            }
+        }).disposed(by: disposeBag)
+        
     }
+    
     // MARK: - Lifecycle
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,16 +78,19 @@ class RepositoriesListViewController: UIViewController {
         viewModelBindings()
     }
 }
+
 extension RepositoriesListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.loadingType.accept(.loading)
+        viewModel.cancelSearch()
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
         viewModel.search(query: searchText)
-        searchBar.showsCancelButton = true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.cancelSearch()
-        searchBar.showsCancelButton = false
+        viewModel.loadingType.accept(.none)
+        tableView.reloadData()
     }
 }
 
@@ -77,12 +103,18 @@ extension RepositoriesListViewController: UITableViewDataSource {
         guard let repositoryCell = tableView.dequeueReusableCell(withIdentifier: RepositoryCellTableViewCell.key) as? RepositoryCellTableViewCell else {
             fatalError(CellError.shared.showError(cellTitle: RepositoryCellTableViewCell.self, cellID: RepositoryCellTableViewCell.key))
         }
+        repositoryCell.prepareForReuse()
         repositoryCell.output(model: viewModel.items.value[indexPath.row])
         return repositoryCell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = URL(string: viewModel.items.value[indexPath.row].url) else { return }
+        UIApplication.shared.open(url)
     }
 }
 

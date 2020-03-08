@@ -21,6 +21,24 @@ struct Repository: Codable {
 // MARK: - Item
 struct Item: Codable {
     let name: String?
-    let url: String?
+    let htmlUrl: String?
     let language: String?
+    let stars: Int?
+    let owner: Owner?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case language
+        case htmlUrl = "html_url"
+        case stars = "stargazers_count"
+        case owner
+    }
+}
+
+struct Owner: Codable {
+    let avatarURL: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case avatarURL = "avatar_url"
+    }
 }
