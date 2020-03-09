@@ -29,7 +29,7 @@ class GitHubRepository: GitHubRepositoryType {
             } else {
                 var repositories = [RepositoryModel]()
                 decoded?.items?.forEach({
-                    let repositoryModel = RepositoryModel(name: $0.name ?? "", language: $0.language ?? "", url: $0.htmlUrl ?? "", stars: String($0.stars ?? 0) , imageURL: $0.owner?.avatarURL ?? "")
+                    let repositoryModel = RepositoryModel(name: $0.name ?? "", language: $0.language ?? "", url: $0.htmlUrl ?? "", stars: String($0.stargazersCount ?? 0) , imageURL: $0.owner?.avatarUrl ?? "")
                     repositories.append(repositoryModel)
                 })
                 completion(.success(repositories))
