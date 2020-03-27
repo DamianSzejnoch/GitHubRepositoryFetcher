@@ -1,6 +1,84 @@
 PODS:
   - Alamofire (5.0.0-rc.3)
+  - Firebase/Analytics (6.21.0):
+    - Firebase/Core
+  - Firebase/Core (6.21.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.4.0)
+  - Firebase/CoreOnly (6.21.0):
+    - FirebaseCore (= 6.6.5)
+  - Firebase/Crashlytics (6.21.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.0.0-beta.6)
+  - FirebaseAnalytics (6.4.0):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.1)
+    - GoogleAppMeasurement (= 6.4.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseCore (6.6.5):
+    - FirebaseCoreDiagnostics (~> 1.2)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.2.2):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 2.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseCrashlytics (4.0.0-beta.6):
+    - FirebaseAnalyticsInterop (~> 1.2)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.1)
+    - GoogleDataTransport (~> 5.1)
+    - GoogleDataTransportCCTSupport (>= 2.0.1, ~> 2.0)
+    - nanopb (~> 0.3.901)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (1.1.1):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - GoogleAppMeasurement (6.4.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (5.1.0)
+  - GoogleDataTransportCCTSupport (2.0.1):
+    - GoogleDataTransport (~> 5.1)
+    - nanopb (~> 0.3.901)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.2)
+  - GoogleUtilities/Logger (6.5.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.5.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.5.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.2)"
+  - GoogleUtilities/Reachability (6.5.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.5.2):
+    - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.5.5)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - PromisesObjC (1.2.8)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
@@ -15,6 +93,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.2)
+  - Firebase/Analytics
+  - Firebase/Crashlytics
   - IQKeyboardManagerSwift
   - R.swift (= 5.1.0)
   - RxCocoa (= 5.0.0)
@@ -25,7 +105,21 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseCrashlytics
+    - FirebaseInstallations
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
     - IQKeyboardManagerSwift
+    - nanopb
+    - PromisesObjC
     - R.swift
     - R.swift.Library
     - RxCocoa
@@ -36,7 +130,21 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
+  FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseCore: 9f495d3afacb7b558711e6218ebb14b1c51b5802
+  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseCrashlytics: b9e729da8b80d9c45f234f791a73b5fe647d4c31
+  FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
+  GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
+  GoogleDataTransport: b29a21d813e906014ca16c00897827e40e4a24ab
+  GoogleDataTransportCCTSupport: 6f15a89b0ca35d6fa523e1f752ef818588885988
+  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
@@ -45,6 +153,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: ffc404b093d3e19bb1608a46b42de864e7e5c776
+PODFILE CHECKSUM: 1b40e85a486cea32a5ab4d9ac529aa4f5ae7333f
 
 COCOAPODS: 1.9.0.beta.3

@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import FacebookShare
 
 class RepositoriesListViewController: UIViewController {
     
@@ -41,6 +42,7 @@ class RepositoriesListViewController: UIViewController {
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("Search Repositories", comment: "")
         searchBar.barStyle = .black
+        searchBar.searchTextField.accessibilityIdentifier = AccessibilityIdentifier.searchField
     }
     
     private func viewModelBindings() {

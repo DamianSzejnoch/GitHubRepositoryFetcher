@@ -1,0 +1,19 @@
+
+default_platform(:ios)
+
+before_all do
+  xcode_select("/Applications/Xcode.app")
+end
+
+platform :ios do
+  desc "Runs all the tests"
+  lane :test do
+      	clear_derived_data
+  	scan
+  end
+
+desc "Make screenshots"
+  lane :make_screenshots do
+    snapshot(clean: true, reinstall_app: true)
+  end
+end

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>90233146460-kadp865d77c3q8vr67g7jeh6hv09k05c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.90233146460-kadp865d77c3q8vr67g7jeh6hv09k05c</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAdTStLmIn112ENnMUrMACv6BM1ZbTRTVE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>90233146460</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Damian-Szejnoch.GitHubSearch</string>
+	<key>PROJECT_ID</key>
+	<string>githubsearch-c9827</string>
+	<key>STORAGE_BUCKET</key>
+	<string>githubsearch-c9827.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:90233146460:ios:4657b4c42d0258c3c22a99</string>
+	<key>DATABASE_URL</key>
+	<string>https://githubsearch-c9827.firebaseio.com</string>
+</dict>
+</plist>

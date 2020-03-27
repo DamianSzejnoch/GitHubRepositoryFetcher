@@ -9,6 +9,8 @@ target 'GitHubSearch' do
 	pod 'RxSwift', '5.0.0'
 	pod 'RxCocoa', '5.0.0'
 	pod 'Swinject', '2.7.1'
+	pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 	pod 'IQKeyboardManagerSwift'
  	pod 'R.swift', '5.1.0'
  	pod 'SnapKit', '5.0.1'
