@@ -33,4 +33,5 @@ class GitHubSearchScreenshot: XCTestCase {
         sleep(3)
         snapshot("01List")
     }
+    
 }

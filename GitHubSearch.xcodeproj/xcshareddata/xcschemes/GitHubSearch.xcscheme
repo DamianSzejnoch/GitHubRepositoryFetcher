@@ -20,6 +20,20 @@
                ReferencedContainer = "container:GitHubSearch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5943FC0D241EC51200FB0EFC"
+               BuildableName = "GitHubSearchScreenshot.xctest"
+               BlueprintName = "GitHubSearchScreenshot"
+               ReferencedContainer = "container:GitHubSearch.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
